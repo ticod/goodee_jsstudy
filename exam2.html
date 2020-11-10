@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam 2</title>
+</head>
+<body>
+  <form name="f1">
+    <h2>from 값을 to에 복사</h2>
+    <input type="text" name="from">
+    <input type="text" name="to">
+    <input type="button" value="복사" onclick="copyValue()">
+
+    <h2>입력된 숫자까지의 합계 구하기</h2>
+    <input type="text" name="num">
+    <input type="button" value="합계" onclick="sumall()"><br>
+    전체 합계: <input type="text" name="sum"><br>
+    짝수 합계: <input type="text" name="evensum"><br>
+    홀수 합계: <input type="text" name="oddsum"><br>
+  </form>
+  <script>
+    // from -> to 복사
+    const form = document.f1;
+    const from = form.from;
+    const to = form.to;
+    const copyValue = () => {
+      to.value = from.value;
+    };
+
+    // 숫자 합계
+    const num = form.num;
+    const sum = form.sum;
+    const evensum = form.evensum;
+    const oddsum = form.oddsum;
+    const sumall = () => {
+      let result = {
+        sum: 0,
+        evensum: 0,
+        oddsum: 0
+      };
+      for (let i = 1; i <= num.value; i++) {
+        result.sum += i;
+        (i % 2 == 0) ? result.evensum += i : result.oddsum += i;
+      }
+      sum.value += result.sum;
+      evensum.value += result.evensum;
+      oddsum.value += result.oddsum;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test 1</title>
+</head>
+<body>
+  <script>
+    let total = 0;
+    let count = 1;
+    let func = () => {
+      const value = Math.ceil(Math.random() * 10) * 10000;
+      total += value;
+      let result = (value >= 60000) ? `${value}원, 저축을 많이 하셨습니다. 잘하셨습니다` : `${value}원, 좀 더 많이 하세요.`
+      alert(result);
+      document.write(`${count}. ${result}<br>`);
+      count++;
+    }
+    while (total < 1000000) {
+      func();
+    }
+    document.write(`총 저축액: ${total}원`);
+  </script>
+</body>
+</html>

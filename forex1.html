@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>입력받은 숫자까지의 합 구하기</title>
+</head>
+<body>
+  1부터 <input type="text" name="" id="num"> 까지의 합:
+  <input type="button" value=" = " onclick="sum()">
+  <input type="text" name="" id="result">
+  <script>
+    /*
+      js : html 페이지를 제어하기 위한 언어
+      내장객체 : 모든 페이지에 존재하는 객체 - 브라우저 객체?
+        1. window : 자바스크립트의 최상단 객체 - 객체 명 생략 가능
+        2. document : 문서 담당 객체, 페이지의 내용 저장
+        3. location : 현재 웹 페이지의 url 정보 저장
+                      location.href="url" => 페이지 이동
+        4. history : 현재 웹 페이지의 url 정보들을 목록으로 저장
+                     history.go(-1) => 앞 페이지로 이동
+        5. navigator : 브라우저의 기본 정보 저장
+    */
+    let sum = () => {
+      const to = document.getElementById('num');
+      const print = document.getElementById('result');
+      let results = 0;
+      for (let i = 1; i <= to.value; i++) {
+        results += i;
+      }
+      print.value = results;
+    }
+  </script>
+</body>
+</html>

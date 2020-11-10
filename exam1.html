@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam 1</title>
+</head>
+<body>
+  <h2>from 값을 to에 복사</h2>
+  <input type="text" name="" id="from">
+  <input type="text" name="" id="to">
+  <input type="button" value="복사" onclick="copyValue()">
+
+  <h2>입력된 숫자까지의 합계 구하기</h2>
+  <input type="text" name="" id="num">
+  <input type="button" value="합계" onclick="sumall()">
+  전체 합계: <span id="sum"></span>
+  짝수 합계: <span id="evensum"></span>
+  홀수 합계: <span id="oddsum"></span>
+
+  <script>
+    // from -> to 복사
+    const from = document.getElementById('from');
+    const to = document.getElementById('to');
+    const copyValue = () => {
+      to.value = from.value;
+    };
+
+    // 숫자 합계
+    const num = document.getElementById('num');
+    const sum = document.getElementById('sum');
+    const evensum = document.getElementById('evensum');
+    const oddsum = document.getElementById('oddsum');
+    const sumall = () => {
+      let result = {
+        sum: 0,
+        evensum: 0,
+        oddsum: 0
+      };
+      for (let i = 1; i <= num.value; i++) {
+        result.sum += i;
+        (i % 2 == 0) ? result.evensum += i : result.oddsum += i;
+      }
+      sum.innerText += result.sum;
+      evensum.innerText += result.evensum;
+      oddsum.innerText += result.oddsum;
+    };
+  </script>
+</body>
+</html>

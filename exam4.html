@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>더하기 연산</title>
+</head>
+<body>
+  <h3>두 수를 입력받아 더하기한 결과를 결과 입력 화면에 출력하기</h3>
+  <form name="f1">
+    <input type="text" name="n1" size="5">
+    +
+    <input type="text" name="n2" size="5">
+    =
+    <input type="text" name="result" size="5">
+    <input type="button" value="결과 보기" onclick="numadd()"><br>
+  </form>
+  <h3>두 수를 입력받아 연산 결과를 결과 입력 화면에 출력하기</h3>
+  <form name="f2">
+    <input type="text" name="n1" size="5">
+    <select name="op">
+      <option>+</option>
+      <option>*</option>
+      <option>/</option>
+      <option>%</option>
+      <option>-</option>
+    </select>
+    <input type="text" name="n2" size="5">
+    =
+    <input type="text" name="result" size="5">
+    <input type="button" value="결과 보기" onclick="numcalc()"><br>
+  </form>
+  <script>
+    const numadd = () => {
+      const f1 = document.f1;
+      const n1 = f1.n1;
+      const n2 = f1.n2;
+      const result = f1.result;
+      result.value = parseInt(n1.value) + parseInt(n2.value);
+    }
+
+    const numcalc = () => {
+      const f2 = document.f2;
+      const n1 = f2.n1.value;
+      const n2 = f2.n2.value;
+      const op = f2.op.value;
+      f2.result.value = eval(`${n1}${op}${n2}`);
+    }
+  </script>
+</body>
+</html>

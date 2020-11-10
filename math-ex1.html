@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math 객체</title>
+</head>
+<body>
+  <script>
+    const getNumber = () => {
+      return Math.floor(Math.random() * 1000) % 10;
+    };
+    const op = new Array("+", "-", "*", "/", "%");
+    const getOp = () => {
+      return op[Math.floor(Math.random() * op.length)];
+    };
+    const str = getNumber() + getOp() + getNumber();
+    const ans = prompt(str + "=", 0);
+    const res = parseInt(eval(str));
+    if (res != ans) {
+      document.write("입력한 값: " + ans);
+      document.write("<font color='red' size='5'>틀렸습니다.</font>");
+      document.write("정답: " + res);
+    } else {
+      document.write("<font color='blue' size='7'>정답입니다.</font>");
+    }
+  </script>
+</body>
+</html>

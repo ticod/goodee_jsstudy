@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test 3</title>
+</head>
+<body>
+  <script>
+    const op = new Array("+", "-", "*", "/", "%");
+    let count = 0;
+    let winPoint = 0;
+    while (true) {
+      const n1 = Math.ceil(Math.random() * 100);
+      const n2 = Math.ceil(Math.random() * 100);
+      const currentOp = op[Math.floor(Math.random() * op.length)];
+      const process = `${n1}${currentOp}${n2}`;
+      const res = eval(process);
+      const answer = prompt(`${process}=? 식의 정답을 입력하세요, 종료: 9999`)
+      if (answer === "9999") {
+        break;
+      }
+      count++;
+      document.write(`입력한 값은 ${answer}입니다.`);
+      if (parseInt(answer) === res) {
+        document.write(`<font color='blue' size='7'>정답입니다!</font><br>`);
+        winPoint++;
+      } else {
+        document.write(`<font color='red' size='5'>틀렸습니다...</font> [${process}=${res}] 입니다.<br>`)
+      }
+    }
+    document.write(`${count}문제 중 ${winPoint}문제를 맞추셨습니다. 게임을 종료합니다`);
+  </script>
+</body>
+</html>

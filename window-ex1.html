@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Window 객체</title>
+</head>
+<body>
+  <form name="f">
+    <input type="radio" name="dbox" id="" onclick="this.form.echo.value=window.alert('alert메세지창 호출');">
+    alert 메세지 창 호출 <br>
+    
+    <input type="radio" name="dbox" id="" onclick="this.form.echo.value=window.confirm('comfirm 호출');">
+    comfirm 메세지 창 호출 <br>
+
+    <input type="radio" name="dbox" id="" onclick="this.form.echo.value=window.prompt('prompt 호출');">
+    prompt 메세지 창 호출 <br>
+
+    <input type="text" name="echo">
+  </form>
+  <script>
+    /*
+    window 객체 : 3개의 메세지 창
+     */
+  </script>
+</body>
+</html>

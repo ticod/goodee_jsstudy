@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test 2</title>
+  <style>
+    * {
+      text-align: center;
+    }
+    table {
+      margin: 0 auto;
+      width: 400px;
+    }
+    input {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h2>바구니 수 계산하기</h2>
+  <form name="f">
+    <table>
+      <tr>
+        <td>
+          바구니 당 사과 갯수:
+        </td>
+        <td>
+          <select name="basket">
+            <option value="5">5개</option>
+            <option value="10">10개</option>
+            <option value="15">15개</option>
+            <option value="20">20개</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          사과의 총 갯수:
+        </td>
+        <td>
+          <input type="text" name="apple">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="button" value="바구니 수 계산하기" width="auto" onclick="calcBasket()">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          필요한 바구니 수:
+        </td>
+        <td>
+          <input type="text" name="total">
+        </td>
+      </tr>
+    </table>
+  </form>
+  <script>
+    const calcBasket = () => {
+      const basket = document.f.basket.value;
+      const apple = document.f.apple.value;
+      const result = document.f.total;
+      result.value = Math.ceil(apple / basket);
+    };
+  </script>
+</body>
+</html>
