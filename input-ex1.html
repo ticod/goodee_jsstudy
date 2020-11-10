@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input</title>
+</head>
+<body>
+  <form name="f" method="POST" onsubmit="return checkInput(this)">
+    아 이 디 : <input type="text" name="id" id="id"><br>
+    비밀번호: <input type="password" name="pw" id="pw"><br>
+    <input type="submit" value="Login">
+  </form>
+  <script>
+    const checkInput = f => {
+      if (f.id.value == '') {
+        alert('아이디를 입력하세요');
+        f.id.focus();
+        return false; // return 값이 false라면 submit되지 않음
+      }
+      if (f.pw.value == '') {
+        alert('비밀번호를 입력하세요');
+        f.pw.focus();
+        return false;
+      }
+      // name으로 접근 (form name => input name)
+      // opener.document.f.id.value = f.id.value;
+      // opener.document.f.pw.value = f.pw.value;
+      // id로 접근
+      opener.document.getElementById('id').value = f.id.value;
+      opener.document.getElementById('pw').value = f.pw.value;
+      self.close();
+      return false;
+    };
+  </script>
+</body>
+</html>

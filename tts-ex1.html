@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TTS JS</title>
+</head>
+<body>
+  <textarea name="" id="intext" cols="100" rows="10">안녕하세요</textarea>
+  <input type="button" value="읽기" onclick="ttsTest()">
+  <script>
+    const msg = new SpeechSynthesisUtterance();
+    function setlang(t) {
+      msg.lang = t;
+    }
+    const ttsTest = () => {
+      setlang('ko_KR');
+      msg.text = intext.value;
+      speechSynthesis.speak(msg);
+    }
+  </script>
+</body>
+</html>

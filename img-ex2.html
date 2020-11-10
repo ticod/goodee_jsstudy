@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 이벤트를 이용한 이미지 변경</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td height="60" align="center">
+                <a href="#" onmouseover="mover(0)" onmouseout="mout(0)">
+                    <img name="m0" src="img/0_out.jpg">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td height="60" align="center">
+                <a href="#" onmouseover="mover(1)" onmouseout="mout(1)">
+                    <img name="m1" src="img/1_out.jpg">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td height="60" align="center">
+                <a href="#" onmouseover="mover(2)" onmouseout="mout(2)">
+                    <img name="m2" src="img/2_out.jpg">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td height="60" align="center">
+                <a href="#" onmouseover="mover(3)" onmouseout="mout(3)">
+                    <img name="m3" src="img/3_out.jpg">
+                </a>
+            </td>
+        </tr>
+    </table>
+    <script>
+        const imgCount = 4;
+        const imgOver = new Array(imgCount);
+        const imgOut = new Array(imgCount);
+        for (let i = 0; i < imgCount; i++) {
+            imgOver[i] = new Image();
+            imgOver[i].src = `img/${i}_over.jpg`;
+            imgOut[i] = new Image();
+            imgOut[i].src = `img/${i}_out.jpg`;
+        }
+        const mover = (num) => {
+            document.images[num].src = imgOver[num].src;
+        };
+        const mout = (num) => {
+            document.images[num].src = imgOut[num].src;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST 1</title>
+</head>
+<body>
+  <h1 id="current">남은 사과: <span id="count"></span></h1>
+  <script>
+    const count = document.getElementById('count');
+    const screenX = 800;
+    const screenY = 600;
+    let total = 20;
+
+    count.innerText = total;
+
+    function Apple() {
+      this.x = Math.random() * screenX;
+      this.y = Math.random() * screenY;
+      this.vx = Math.random() * 3;
+      this.vy = Math.random() * 3;
+      this.angle = this.vx + this.vy * 360 / 360;
+      this.rotate = Math.random() * 10 - 5;
+      this.body = document.createElement("img");
+      this.body.src = "imgs/apple.png";
+      this.body.style.transform = `rotate(${this.angle}deg)`;
+      this.body.style.height = "50px";
+      this.body.style.width = "50px";
+      this.body.style.position = "absolute";
+      this.body.style.cursor = "pointer";
+      this.isDie = false;
+      this.body.onclick = (event) => {
+        this.isDie = true;
+        this.body.src = "imgs/eatapple.png";
+        total--;
+        count.innerText = total;
+        this.body.style.cursor = "default";
+        this.body.style.zIndex = "-1";
+        event.target.onclick = null;
+      };
+      document.body.appendChild(this.body);
+    }
+
+    Apple.prototype.move = function() {
+      if (this.isDie) {
+        return;
+      }
+      if (this.x < 0 || this.x > screenX) {
+        this.vx *= -1;
+      }
+      if (this.y < 0 || this.y > screenY) {
+        this.vy *= -1;
+      }
+      this.angle = (this.angle + this.rotate) % 360;
+      this.x += this.vx;
+      this.y += this.vy;
+      this.body.style.left = this.x + "px";
+      this.body.style.top = this.y + "px";
+      this.body.style.transform = `rotate(${this.angle}deg)`;
+    };
+
+    window.onload = () => {
+      let apples = [];
+      for (let i = 0; i < total; i++) {
+        apples.push(new Apple());
+      }
+      const a = `
+      abc
+      abc
+      abc
+      `;
+
+      const game = setInterval(() => {
+        if (total <= 0) {
+          document.getElementById('current').innerText = "게임 종료!";
+          clearInterval(game);
+        }
+        for (let apple in apples) {
+          apples[apple].move();
+        }
+      }, 1000 / 60);
+    };
+  </script>
+</body>
+</html>

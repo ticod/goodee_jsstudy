@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글자 잡기 게임</title>
+
+</head>
+<body>
+  <h1>남은 문자 수: <span id="count"></span></h1>
+  <script>
+    const nextRandomInteger = (limit) => {
+      return Math.round(Math.random() * limit);
+    };
+    const randomSpeed = (maxSpeed) => {
+      return Math.random() * maxSpeed - Math.random() * maxSpeed;
+    };
+    const count = document.getElementById('count');
+    const canvasWidth = 700;
+    const canvasHeight = 500;
+    let total = 15;
+    count.innerText = total;
+
+    function MovingText() {
+      this.x = nextRandomInteger(canvasWidth);
+      this.y = nextRandomInteger(canvasHeight);
+      this.vx = randomSpeed(2);
+      this.vy = randomSpeed(2);
+      this.body = document.createElement("h1");
+      this.body.innerHTML = "A";
+      this.body.setAttribute("style", "background-color: rgba(255, 255, 255, 0)");
+      this.body.style.position = "absolute";
+      this.body.style.cursor = "pointer";
+      const text = this.body;
+      this.body.onclick = (event) => {
+        --total;
+        count.innerText = total;
+        // alert("남은 문자 수: " + total);
+        text.innerHTML = "B";
+        event.target.onclick = null;
+      };
+      document.body.appendChild(this.body);
+    };
+
+    MovingText.prototype.move = function() {
+      if (this.body.innerHTML === 'B') {
+        return;
+      }
+      if (this.x < 0 || this.x > canvasWidth) {
+        this.vx *= -1;
+      }
+      if (this.y < 0 || this.y > canvasWidth) {
+        this.vy *= -1;
+      }
+      this.x += this.vx;
+      this.y += this.vy;
+      this.body.style.left = this.x + "px";
+      this.body.style.top = this.y + "px";
+    };
+
+    window.onload = () => {
+      let movingTexts = [];
+      for (let i = 0; i < total; i++) {
+        movingTexts.push(new MovingText());
+      }
+      const game = setInterval(() => {
+        for (const i in movingTexts) {
+          if (total < 4) {
+            alert("게임 종료");
+            clearInterval(game);
+            return;
+          }
+          movingTexts[i].move();
+        }
+      }, 1000/60);
+    };
+  </script>
+</body>
+</html>

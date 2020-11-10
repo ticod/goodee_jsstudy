@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 옮기기</title>
+  <style>
+    .droptarget {
+      float : left;
+      min-width: 400px;
+      min-height: 35px;
+      margin: 15px;
+      padding: 10px;
+      border: 1px solid #aaaaaa;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="droptarget" ondrop="drop(event)"
+    ondragover="allowDrop(event)">
+    <img src="img/icon01.png" 
+      ondragstart="dragStart(event)" 
+      ondragend="dragEnd(event)"
+      draggable="true"
+      id="dragtarget1">
+    <img src="img/icon01.png" ondragstart="dragStart(event)" 
+      ondragend="dragEnd(event)"
+      draggable="true"
+      id="dragtarget2">
+    <p ondragstart="dragStart(event)" 
+      ondragend="dragEnd(event)"
+      draggable="true"
+      id="dragtarget3">
+      이동해 주세요
+    </p>
+    <h1 ondragstart="dragStart(event)" 
+      ondragend="dragEnd(event)"
+      draggable="true"
+      id="dragtarget4">
+      이동해 주세요
+    </h1>
+  </div>
+  <div class="droptarget" ondrop="drop(event)"
+    ondragover="allowDrop(event)">
+  </div>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <script>
+    const dragStart = (event) => {
+      event.dataTransfer.setData("Text", event.target.id);
+      document.getElementById("demo1").innerHTML = "이동 시작합니다. ";
+    };
+    const dragEnd = (event) => {
+      document.getElementById("demo1").innerHTML = "이동 끝났습니다. ";
+    };
+    const allowDrop = (event) => {
+      event.preventDefault();
+      document.getElementById("demo2").innerHTML = "drag over 입니다. ";
+    };
+    const drop = (event) => {
+      event.preventDefault();
+      var data = event.dataTransfer.getData("Text");
+      event.target.appendChild(document.getElementById(data));
+      document.getElementById("demo2").innerHTML = "drag drop 입니다. ";
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>새 창 열기</title>
+</head>
+<body>
+  <a href="javascript:open_win()">새 창 열기</a><br>
+  <a href="javascript:open_win_game()">game ex1 페이지 열기</a><br>
+  <a href="javascript:open_win_input()">input ex1 페이지 열기</a><br>
+  <a href="javascript:close_win()">새 창 닫기</a><br>
+  <form name="f" method="POST" onsubmit="return checkInput(this)">
+    아 이 디 : <input type="text" name="id" id="id"><br>
+    비밀번호: <input type="password" name="pw" id="pw"><br>
+    <input type="submit" value="Login">
+  </form>
+  <script>
+    let nw;
+    const open_win = () => {
+      nw = window.open("", "open", "width=600, height200, menubar=no, top=200, left=200");
+      nw.document.write("새로운 윈도우<br>");
+      nw.document.write("open-ex1.html 페이지의 open 함수로 열린 창<br>");
+    };
+    const open_win_game = () => {
+      nw = window.open("game-ex1.html", "open", "width=600, height200, menubar=no, top=200, left=200");
+    };
+    const open_win_input = () => {
+      nw = window.open("input-ex1.html", "open", "width=600, height200, menubar=no, top=200, left=200");
+
+      nw.onload = () => {
+        nw.document.f.id.value = 'aaa';
+      };
+    };
+    const close_win = () => {
+      nw.close();
+    };
+  </script>
+</body>
+</html>
