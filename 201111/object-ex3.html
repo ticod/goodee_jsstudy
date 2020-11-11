@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체의 상속 표현</title>
+</head>
+<body>
+  <pre>
+    Animal 객체
+      name : 문자열
+      cry  : 메서드
+
+    Dog 객체 extends Animal
+      cry  : 오버라이딩 '멍멍'
+
+    Cat 객체 extends Animal
+      cry  : 오버라이딩 '야옹'
+
+    Bird 객체 extends Animal
+      cry  : 오버라이딩 '짹짹'
+  </pre>
+  <script type="text/javascript">
+    function Animal(name) {
+      this.name = name;
+      this.cry = function() {
+
+      };
+    }
+
+    function Dog(name) {
+      this.base = Animal;
+      this.base(name);
+      this.cry = function() {
+        document.write(this.name + " 멍멍", "<br>");
+      };
+    }
+
+    function Cat(name) {
+      this.base = Animal;
+      this.base(name);
+      this.cry = function() {
+        document.write(this.name + " 야옹", "<br>");
+      };
+    }
+
+    function Bird(name) {
+      this.base = Animal;
+      this.base(name);
+      this.cry = function() {
+        document.write(this.name + " 짹짹", "<br>");
+      };
+    }
+
+    const dog = new Dog("강아지");
+    const cat = new Cat("고양이");
+    const bird = new Bird("참새");
+
+    dog.cry();
+    cat.cry();
+    bird.cry();
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체의 상속을 class로</title>
+</head>
+<body>
+  <script>
+    class Animal {
+      constructor(name) {
+        this.name = name;
+      }
+
+      cry() {
+
+      }
+    }
+
+    class Dog extends Animal {
+      constructor(name) {
+        super(name);
+      }
+
+      cry() {
+        document.write(this.name + " 멍멍", "<br>");
+      }
+    }
+
+    class Cat extends Animal {
+      constructor(name) {
+        super(name);
+      }
+
+      cry() {
+        document.write(this.name + " 야옹", "<br>");
+      }
+    }
+
+    class Flyable {
+      fly() {}
+    }
+
+    class Writable {
+      write() {}
+    }
+
+    class Bird extends Object.assign(Animal, Flyable, Writable) {
+      constructor(name) {
+        super(name);
+      }
+      
+      cry() {
+        document.write(this.name + " 짹짹", "<br>");
+      }
+
+      fly() {
+        document.write(this.name + " 날라다녀요!", "<br>");
+      }
+
+      write() {
+        document.write(this.name + " 글을 쓰네요!", "<br>");
+      }
+    }
+
+    const dog = new Dog("강아지");
+    const cat = new Cat("고양이");
+    const bird = new Bird("참새");
+
+    dog.cry();
+    cat.cry();
+    bird.cry();
+    bird.fly();
+    bird.write();
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Person 객체 생성</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // class Person {
+    //   constructor(name, blog) {
+    //     this.name = name;
+    //     this.blog = blog;
+    //   }
+
+    //   getName() {
+    //     return this.name;
+    //   }
+
+    //   getBlog() {
+    //     return this.blog;
+    //   }
+    // }
+
+    function Person(name, blog) {
+      this.name = name;
+      this.blog = blog;
+    }
+
+    Person.prototype.getName = function() {
+      return this.name;
+    }
+
+    Person.prototype.getBlog = function() {
+      return this.blog;
+    }
+    
+    const kim = new Person("김삿갓", "kimsg.tistory.com");
+    const lee = new Person("이몽룡", "leemy.tistory.com");
+    document.write(kim.getName() + "<br>");
+    document.write(kim.getBlog() + "<br>");
+    document.write(lee.getName() + "<br>");
+    document.write(lee.getBlog() + "<br>");
+  </script>
+</body>
+</html>

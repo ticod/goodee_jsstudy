@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST 2</title>
+  <style type="text/css">
+    table { width:100%; border-collapse: collapse;}
+    th,td {border : 3px solid #bcbcbc; text-align: center; padding: 8px;}
+    th {background-color: #e2e2e2; color:#111111;}
+    td {background-color: #f2f2f2;}
+    caption {color:#111111; font-size: 20px; background-color: #ffffff;}
+    </style>
+</head>
+<body>
+  <input type="button" value="세로출력" onclick="print1()">
+  <input type="button" value="가로출력" onclick="print2()">
+  <input type="button" value="2단출력" onclick="print3()">
+  <select onchange="print4(event)">
+    <option value="">단</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+  </select>
+  <div id="gugudan">
+  </div>
+  <script>
+    const gugudan = document.getElementById('gugudan');
+    let storage = [[]];
+    for (let i = 0; i <= 9; i++) {
+      storage[i] = new Array(10);
+      for (let j = 0; j <= 9; j++) {
+        storage[i][j] = i * j;
+      }
+    }
+
+    const print1 = () => {
+      let result = "";
+      result += "<table><caption>세로 출력</caption>";
+
+      for (let i = 2; i <= 9; i++) {
+        result += "<tr>";
+        result += `<th>${i}단</th>`
+        for (let j = 1; j <= 9; j++) {
+          result += `<td>${i} * ${j} = ${storage[i][j]}</td>`;
+        }
+        result += "</tr>";
+      }
+      result += "</table>";
+      gugudan.innerHTML = result;
+    };
+    
+    const print2 = () => {
+      let result = "";
+      result += "<table><caption>가로 출력</caption><tr>";
+
+      for (let i = 2; i <= 9; i++) {
+        result += `<th>${i}단</th>`;
+      }
+
+      result += "</tr>";
+      for (let i = 1; i <= 9; i++) {
+        result += "<tr>";
+        for (let j = 2; j <= 9; j++) {
+          result += `<td>${j} * ${i} = ${storage[j][i]}</td>`;
+        }
+        result += "</tr>";
+      }
+      gugudan.innerHTML = result;
+    };
+
+    const print3 = () => {
+      let result = "";
+      result += "<table><caption>2단 출력</caption>";
+
+      for (let n = 0; n <= 4; n += 4) {
+        for (let i = 2 + n; i <= 5 + n; i++) {
+          result += `<th>${i}단</th>`;
+        }
+        
+        for (let j = 1; j <= 9; j++) {
+          result += "<tr>";
+          for (let i = 2 + n; i <= 5 + n; i++) {
+            result += `<td>${i} * ${j} = ${storage[i][j]}</td>`;
+          }
+          result += "</tr>";
+        }
+      }
+      result += "</table>";
+      gugudan.innerHTML = result;
+    };
+
+    const print4 = (event) => {
+      // 브라우저 별로 처리 방법이 다르다.
+      // 즉, value가 number가 아닐 수 있으므로
+      // parseInt를 해주는 것이 안전하다.
+      const value = parseInt(event.target.value);
+      let result = "";
+      result += `<table>
+        <tr>
+          <th>${value}단</th>
+        </tr>
+      `;
+      for (let i = 1; i <= 9; i++) {
+        result += `<tr><td>${value} * ${i} = ${storage[value][i]}</td></tr>`;
+      }
+      result += `</table>`;
+      gugudan.innerHTML = result;
+    };
+  </script>
+</body>
+</html>

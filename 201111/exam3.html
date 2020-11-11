@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타자 연습 게임</title>
+  <style>
+    .box {
+      width: 80%;
+      height: 500px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -40%;
+      margin-top: -250px;
+    }
+
+    div {
+      position: absolute;
+    }
+
+    #main {
+      width: 80%;
+      height: 500px;
+      border: 1px solid blue;
+      overflow: hidden;
+    }
+
+    input {
+      position: absolute;
+      width: 79%;
+      top: 510px;
+      /* left: 10px; */
+      size: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="box">
+    <div id="main">
+
+    </div>
+    <input type="text" id="delete">
+  </div>
+  
+  
+  <script>
+    const box = document.getElementById('box');
+    const datas = [
+      ["태연", "유리", "윤아", "효연", "수영", "서현", "티파니", "써니", "제시카"],
+      ["정국", "뷔", "지민", "슈가", "진", "RM", "제이홈"],
+      ["미나", "나연", "다현", "지효", "모모", "채영", "쯔위", "사나", "정연"]
+    ];
+    const colors = ["red", "blue", "green", "grey", "orange", "black"];
+    const worlds = [];
+    const screenX = box.offsetLeft + window.innerWidth * 0.8;
+
+    const randomData = () => {
+      let i = random(datas.length);
+      let j = random(datas[i].length);
+      return datas[i][j];
+    };
+
+    const random = (num) => {
+      return parseInt(Math.floor(Math.random() * num));
+    };
+
+    class MovingData {
+      constructor() {
+        this.h3 = document.createElement('h3');
+        this.h3.innerHTML = randomData();
+        this.x = random(window.innerWidth * 0.8) + box.offsetLeft;
+        this.y = 0;
+        this.vx = 0;
+        this.vy = 10;
+        this.cssInit();
+        document.getElementById('main').appendChild(this.h3);
+      }
+
+      cssInit() {
+        this.h3.style.position = "absolute";
+        this.h3.style.color = colors[random(colors.length)];
+      }
+
+      move() {
+        if (this.x + this.h3.innerHTML.length > screenX) {
+          this.x = screenX - (this.h3.innerHTML.length + 1);
+        }
+        this.y += this.vy;
+        this.h3.style.left = this.x + 'px';
+        this.h3.style.top = this.y + 'px';
+      }
+    }
+
+    const createMode = () => {
+      worlds.push(new MovingData());
+    };
+
+    const moveMode = () => {
+      for (let i in worlds) {
+        worlds[i].move();
+        if (worlds[i].y >= 500) {
+          document.getElementById('main').removeChild(worlds[i].h3);
+          delete worlds[i];
+          clearInterval(cm);
+          clearInterval(mm);
+          
+          for (let j in worlds) {
+            worlds[j].h3.style.color = "grey";
+          }
+        }
+      }
+    }
+
+    const deleteMode = (event) => {
+      for (let i in worlds) {
+        worlds[i].move();
+        if (worlds[i].h3.innerHTML === event.target.value) {
+          document.getElementById('main').removeChild(worlds[i].h3);
+          delete worlds[i];
+        }
+        document.getElementById('delete').value="";
+        document.getElementById('delete').focus();
+      }
+    };
+
+    document.getElementById('delete').addEventListener('change', deleteMode);
+    window.onload = () => {
+      cm = setInterval(createMode, 2000);
+      mm = setInterval(moveMode, 500);
+    };
+  </script>
+</body>
+</html>
